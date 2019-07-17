@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nero.spring.boot.demo.mapper.db2.Table2Mapper">
+
+    <insert id="addTable2" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO table2(`name2`) VALUE (#{name2})
+    </insert>
+    
+    <select id="selectTable2" resultType="Table2">
+        SELECT id, name2
+        FROM table2
+        WHERE name2 like concat('%', #{queryString}, '%')
+    </select>
+</mapper>

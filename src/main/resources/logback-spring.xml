@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration  status="INFO">
+
+    <springProperty scope="context" name="logPath" source="log.path"/>
+    <springProperty scope="context" name="logLevel" source="log.level"/>
+
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--正常日志-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/spring-boot-demo.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--错误日志-->
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--输出路径-->
+            <fileNamePattern>${logPath}/spring-boot-demo.%d{yyyy-MM-dd}.error</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern> %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--指定包的日志级别-->
+    <logger name="org.springframework.web" level="${logLevel}"/>
+    <logger name="org.springframework.context.annotation.AnnotationConfigApplicationContext" level="OFF"/>
+
+    <root level="${logLevel}">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+        <appender-ref ref="fileErrorLog" />
+    </root>
+</Configuration>
