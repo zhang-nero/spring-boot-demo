@@ -87,7 +87,7 @@
             </build>
         </profile>
         <profile>
-            <id>pro</id>
+            <id>prod</id>
             <properties>
                 <deploy.env>prod</deploy.env>
             </properties>
