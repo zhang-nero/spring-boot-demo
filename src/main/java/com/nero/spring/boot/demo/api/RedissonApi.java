@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import redis.clients.jedis.JedisPool;
 
 import java.util.concurrent.TimeUnit;
 
@@ -50,5 +51,14 @@ public class RedissonApi {
         }
 
         return result;
+    }
+
+    @Autowired
+    private JedisPool jedisPool;
+
+    @ApiOperation(value = "redis测试", httpMethod = "GET", notes = "redis测试")
+    @RequestMapping(value = "redisTest", method = RequestMethod.GET)
+    public void redisTest(){
+
     }
 }
