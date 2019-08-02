@@ -7,6 +7,8 @@
 |:---:|:---------|:--------|:----|
 1 | Redisson|使用redis实现分布式锁|[redisson](https://github.com/redisson/redisson)
 2 | Mybatis + Mysql多数据源|配置多个数据源，分别进行事务管理，可以指定默认事务管理器 | |
+3 | PageHelper|Mybatis通用分页插件|[PageHelper](https://github.com/pagehelper/Mybatis-PageHelper)
+4 | Swagger|The Best APIs are Built with Swagger Tools|[swagger](https://swagger.io/)
 
 ## 打包指令
 * dev Env

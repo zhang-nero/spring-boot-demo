@@ -1,5 +1,6 @@
 package com.nero.spring.boot.demo.api;
 
+import io.swagger.annotations.ApiOperation;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ public class RedissonApi {
     @Autowired
     private RedissonClient redissonClient;
 
+    @ApiOperation(value = "获取Redisson锁", httpMethod = "GET", notes = "获取Redisson锁")
     @RequestMapping(value = "getLock", method = RequestMethod.GET)
     public String getLock(){
         RLock rLock = redissonClient.getLock("redissonTestLockKey");
